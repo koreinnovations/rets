@@ -6,7 +6,10 @@ module Rets
   class HttpError < StandardError ; end
 
   class Client
-    DEFAULT_OPTIONS = {}
+    DEFAULT_OPTIONS = {
+        "QueryType" => "DMQL2",
+        "Format" => "COMPACT"
+    }
 
     COUNT = Struct.new(:exclude, :include, :only).new(0,1,2)
 
@@ -142,8 +145,7 @@ module Rets
     end
 
     def find_every(opts, resolve)
-      params = {"QueryType" => "DMQL2", "Format" => "COMPACT"}.merge(fixup_keys(opts))
-      params['Format'] = 'COMPACT-DECODED'
+      params = fixup_keys(opts)
       res = http_post(capability_url("Search"), params)
 
       if opts[:count] == COUNT.only
