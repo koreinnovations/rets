@@ -143,6 +143,7 @@ module Rets
 
     def find_every(opts, resolve)
       params = {"QueryType" => "DMQL2", "Format" => "COMPACT"}.merge(fixup_keys(opts))
+      params['Format'] = 'COMPACT-DECODED'
       res = http_post(capability_url("Search"), params)
 
       if opts[:count] == COUNT.only
