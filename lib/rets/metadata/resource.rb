@@ -7,6 +7,7 @@ module Rets
       attr_accessor :key_field
 
       attr_accessor :id
+      attr_accessor :description
 
       def initialize(resource)
         self.rets_classes = []
@@ -14,6 +15,7 @@ module Rets
 
         self.id = resource["ResourceID"]
         self.key_field = resource["KeyField"]
+        self.description = resource["Description"]
       end
 
       def self.find_lookup_containers(metadata, resource)

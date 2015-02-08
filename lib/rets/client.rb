@@ -287,7 +287,7 @@ module Rets
 
     def retrieve_metadata_type(type)
       res = http_post(capability_url("GetMetadata"),
-                      { "Format" => "COMPACT",
+                      { "Format" => "COMPACT", # TODO: make this dynamic
                         "Type"   => "METADATA-#{type}",
                         "ID"     => "0"
                       })
